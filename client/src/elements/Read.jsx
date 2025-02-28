@@ -7,7 +7,7 @@ function Read() {
   const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`/employee/${id}`)
+      .get(`/get_student/${id}`)
       .then((res) => {
         setData(res.data);
       })
@@ -15,7 +15,8 @@ function Read() {
   }, [id]);
   return (
     <div className="container-fluid vw-100 vh-100 bg-primary">
-      <h1>User {id}</h1>
+      <h3>User {id} Details</h3>
+      
       <Link to="/" className="btn btn-success">Back</Link>
       {data.map((student) => {
         return (

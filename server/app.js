@@ -33,8 +33,48 @@ app.post('/add_user',(req,res)=>{
         if(err) return res.json({message:'Something unexpexted has occured'+err})
         return res.json({success:"Employee added Successfully!"})
     })
-      
-    
+})
+
+app.get("/employees",(req,res)=>{
+    const sql="SELECT * FROM employees";
+    db.query(sql,(err,result)=>{
+        if(err) res.json({message:"server Error"+err})
+        return res.json(result);
+    })
+})
+
+app.get("/employee/:id",(req,res)=>{
+    const id = req.params.id; // Extract id from URL
+    const sql="SELECT * FROM employees WHERE ID=(?)";
+    db.query(sql,[id],(err,result)=>{
+        if(err) res.json({message:"server Error"+err})
+        return res.json(result);
+    })
+})
+
+app.put("/editemployee/:id",(req,res)=>{
+    const id = req.params.id; // Extract id from URL
+    const sql = "UPDATE employees SET name = ?, email = ?, age = ?, gender = ? WHERE id = ?";
+    const values=[
+        req.body.name,
+        req.body.email,
+        req.body.age,
+        req.body.gender,
+        id
+    ]
+    db.query(sql,values    ,(err,result)=>{
+        if(err) res.json({message:"server Error"+err})
+        return res.json({success:"updated successfully!"});
+    })
+})
+
+app.delete("/deleteemployee/:id",(req,res)=>{
+    const id = req.params.id; // Extract id from URL
+    const sql='DELETE FROM employees WHERE id=?';
+    db.query(sql,[id],(err,result)=>{
+        if(err) res.json({message:"server Error"+err})
+            return res.json({success:"deleted successfully!"})
+    })
 })
 
 db.connect((err)=>{

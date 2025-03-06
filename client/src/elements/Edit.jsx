@@ -31,6 +31,7 @@ function Edit() {
   return (
     <div className="container-fluid vw-100 vh-100 bg-primary">
       <h1>User {id}</h1>
+      <hr/>
       <Link to="/" className="btn btn-success">
         Back
       </Link>

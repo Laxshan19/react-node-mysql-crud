@@ -27,6 +27,7 @@ function Home() {
   return (
     <div className='container-fluid bg-primary vh-100 vw-100'>
         <h3>Students</h3>
+        <hr/>
         <div className='d-flex justify-content-end'>
             <Link className='btn btn-success' to='/create'>Add Student</Link>
         </div>

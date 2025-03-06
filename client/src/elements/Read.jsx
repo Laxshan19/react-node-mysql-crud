@@ -16,7 +16,7 @@ function Read() {
   return (
     <div className="container-fluid vw-100 vh-100 bg-primary">
       <h3>User {id} Details</h3>
-      
+      <hr/>
       <Link to="/" className="btn btn-success">Back</Link>
       {data.map((student) => {
         return (
